@@ -1,5 +1,5 @@
 # text based application
-from utils import database_w_db
+from utils import database_w_db_refactored
 
 USER_CHOICE = """
 Enter:
@@ -11,7 +11,7 @@ Enter:
 
 Your choice: """
 def menu():
-    database_w_db.create_book_table()
+    database_w_db_refactored.create_book_table()
     user_input = input(USER_CHOICE)
     while user_input != 'q':
         if user_input == 'a':
@@ -28,10 +28,10 @@ def menu():
 def prompt_add_book():
     name = input('Enter the new book name: ')
     author = input('Enter the new book author: ')
-    database_w_db.add_book(name, author)
+    database_w_db_refactored.add_book(name, author)
 
 def list_books():
-    for book in database_w_db.get_all_books():
+    for book in database_w_db_refactored.get_all_books():
         read = 'YES' if book['read'] else 'NO' #if book['read'] = True' if 0 = False; if 1 = TRue
         print(f"{book['name']} by {book['author']} — Read: {read}")
 
@@ -39,11 +39,11 @@ def list_books():
 def prompt_read_book():
     #read user input and mark book as read.
     name = input("Enter book name you've read:")
-    database_w_db.mark_book_as_read(name)
+    database_w_db_refactored.mark_book_as_read(name)
 
 def prompt_delete_book():
     name = input("Enter book name you want to delete:")
-    database_w_db.delete_book(name)
+    database_w_db_refactored.delete_book(name)
 
 
 menu()
