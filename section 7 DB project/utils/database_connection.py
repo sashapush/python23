@@ -10,5 +10,8 @@ class DatabaseConnection:
         return self.connection
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.connection.commit()
-        self.connection.close()
+        if exc_type or exc_val or exc_tb: #means if exc_type is not None etc
+            self.connection.close() #close connection without commiting if any error is observed
+        else:
+            self.connection.commit()
+            self.connection.close()
