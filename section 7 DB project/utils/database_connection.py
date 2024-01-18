@@ -5,7 +5,7 @@ class DatabaseConnection:
     def __init__(self,host):
         self.connection = None #in order to use connection in both setup and teardown methods
         self.host = host
-    def __enter__(self):
+    def __enter__(self) -> sqlite3.Connection:
         self.connection = sqlite3.connect(self.host)
         return self.connection
 

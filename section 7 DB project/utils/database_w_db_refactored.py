@@ -1,5 +1,7 @@
 # Concerned with storing and retrieving books from csv file
 # format: name,author,read\n
+from typing import Dict, List, Union
+
 from .database_connection import DatabaseConnection
 
 """
@@ -7,17 +9,19 @@ from .database_connection import DatabaseConnection
 """
 books_file = "books.json"
 
+Book = Dict[str, Union[str, int]]  # string for key and string+int for value,
+
 
 # functions below are the content of the interface communicating with business logic
 
-def create_book_table():
+def create_book_table() -> None:
     with DatabaseConnection('data.db') as connection:
         cursor = connection.cursor()
         cursor.execute(
             'CREATE TABLE IF NOT EXISTS books (name text primary key,author text,read integer)')  # create table #real is floating point number in sqlite3; PK = no duplicates + faster search
 
 
-def add_book(name, author):
+def add_book(name: str, author: str) -> None:  # for parameter type hinting use ":", for function ->
     with DatabaseConnection('data.db') as connection:
         cursor = connection.cursor()
         # f string isn't recommended approach since it enables SQL injectons
@@ -27,7 +31,7 @@ def add_book(name, author):
         cursor.execute('INSERT INTO books VALUES(?,?,0)', (name, author))
 
 
-def get_all_books():
+def get_all_books() -> List[Book]:  # type hinting , see string 12
     with DatabaseConnection('data.db') as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * from books')  # " are used to tell sqlite that data is string, not table name
@@ -37,13 +41,13 @@ def get_all_books():
     return books
 
 
-def mark_book_as_read(name):
+def mark_book_as_read(name: str) -> None:
     with DatabaseConnection('data.db') as connection:
         cursor = connection.cursor()
         cursor.execute("UPDATE books SET read=1 WHERE name=?", (name,))  # still a tuple in parameters
 
 
-def delete_book(name):
+def delete_book(name: str) -> None:
     with DatabaseConnection('data.db') as connection:
         cursor = connection.cursor()
         cursor.execute("DELETE FROM books WHERE name=?", (name,))  # still a tuple in parameters
