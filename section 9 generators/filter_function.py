@@ -1,3 +1,8 @@
+# Why would you use `filter()`?
+#If you are only working in Python and with Python developers: you wouldn’t.
+
+
+
 #not needed for lambda
 # def starts_with_r(friend):
 #     return friend.startswith('R')
