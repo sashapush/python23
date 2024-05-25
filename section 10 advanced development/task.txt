@@ -1,0 +1,66 @@
+Exercise: Python collections (Python 3.10)
+In the last lecture, we saw some really interesting Python collections. Now let's put them into practice.
+
+This is a longer exercise which will help you review a few of the collections. These collections are extremely useful in your day to day Python development, so it's a good idea to try to remember how to use them.
+
+In this exercise, you'll be asked to tackle four tasks using four different data structures. For each task, you will need to put your code into the appropriate function, for example task1(), task2() etc, and you may need to return a specified value in that function.
+
+Task 1: defaultdict
+
+This task requires you do the following:
+
+Create a task1() function.
+
+In task1() function, create a defaultdict object, and its default value would be set to the string 'Unknown'.
+
+Add an entry with key name 'Alan'   and its value being 'Manchester'.
+
+Return the defaultdict object you created.
+
+Task 2: OrderedDict
+
+In this task, you are asked to:
+
+Create a task2() function that takes in one argument arg_od, which is an OrderedDict object.
+
+Remove the first and last entry in arg_od.
+
+Move the entry with key name Bob to the end of arg_od.
+
+Move the entry with key name Dan to the start of arg_od.
+
+You may assume that arg_od would always contain the keys Bob and Dan, and they won't be the first or last entry initially.
+
+An example arg_od would look like this:
+
+OrderedDict([
+    ('Alan', 'Manchester'),
+    ('Bob', 'London'),
+    ('Chris', 'Lisbon'),
+    ('Dan', 'Paris'),
+    ('Eden', 'Liverpool'),
+    ('Frank', 'Newcastle')
+])
+And after calling task2(arg_od), it would look like this:
+
+OrderedDict([
+    ('Dan', 'Paris'),
+    ('Chris', 'Lisbon'),
+    ('Eden', 'Liverpool'),
+    ('Bob', 'London')
+])
+Task 3: namedtuple
+In this task, you will need to:
+Create a task3()  function that takes in two arguments, name and club.
+In task3() function, you will need to create a namedtuple with type Player, and it will have two fields, name and club.
+The Player namedtuple instance should have the name and club set by the given arguments of task3()function.
+
+At last, return the Player  namedtuple instance you created.
+Task 4: deque
+Create a function task4()  that takes in one argument arg_deque , which is a deque .
+Manipulate the deque in any order you prefered to achieve the following effect:
+Remove last element in deque
+Move the first (left most) element to the end (right most)
+Add an element 'Zack', a string, to the start (left)
+Happy coding!
+
