@@ -12,7 +12,10 @@ def is_filename_safe(filename):
     #regex = '^([a-zA-Z0-9]+[-_()]*)+(\.jpg|\.jpeg|\.png|\.gif)$' my not fully correct way
     regex = '^[a-zA-Z0-9][a-zA-Z0-9_()-]*(\.jpg|\.jpeg|\.png|\.gif)$'
     return re.match(regex, filename) is not None
-
+    # ^[a-zA-Z0-9]      start with a-zA-Z0-9
+    # [a-zA-Z0-9_()-]*      then only contains a-zA-Z0-9_()- for any number of times
+    # (\.jpg|\.jpeg|\.png|\.gif)$       at last, it must end with one of the four extensions, remember to escape the dot
+    # since we check from start to end, it can either match the whole string or none
 
 list = ["ass.jpg","a","(aer3244c12.jpg","b","c","test.gif.jpg","Ass",".jpg","Ada.jpg","1.jpg","a1.jpg","a1-a_2(1).jpg","123as","12sas"]
 
