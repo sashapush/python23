@@ -1,3 +1,4 @@
+#update of wclasses file
 import re
 from bs4 import BeautifulSoup
 
@@ -42,6 +43,8 @@ ITEM_HTML = '''<html><head></head><body>
 
 #Now we've renamed methods to simple name-rating etc
 #By adding @property tag - we specify that a method return a property of a class object
+
+
 class ParsedItem:
     """
     class to take in html page or partof it and find properties of an item in it
@@ -53,20 +56,20 @@ class ParsedItem:
     def name(self):
     #item name
     #path of children up
-        locator = 'article.product_pod h3 a' #css locator
+        locator = ParsedItemLocators.NAME_LOCATOR #css locator
         item_link = self.soup.select_one(locator) #= <a href="catalogue/a-light-in-the-attic_1000/index.html" title="A Light in the Attic">A Light in the ...</a>
         item_name = item_link.attrs['title'] #access the title property of string above
         return item_name
 
     @property
     def link(self):
-        locator = 'article.product_pod a'  # css locator
+        locator = ParsedItemLocators.LINK_LOCATOR # css locator
         item_link = self.soup.select_one(locator).attrs['href'] #relative link wo domain name
         return item_link
 
     # def find_item_price(self):
     #     #my way
-    #     locator = 'article.product_pod p.price_color'  # css locator
+    #     locator = ParsedItemLocators.PRICE_LOCATOR  # css locator
     #     expression = '£([0-9]+\.[0-9]+)' #() is a group; + is 1 or more (I've used * and it's 0 or more
     #     item_price = self.soup.select_one(locator).getText() #=£51.77 #lector did .string instead of .getText()
     #     matches = re.search(expression, item_price)
@@ -75,7 +78,7 @@ class ParsedItem:
     #     #lector way (if different)
     @property
     def rating(self):
-        locator = 'article.product_pod p.star-rating'  # css locator; star-rating Three - 2 css classes
+        locator = ParsedItemLocators.RATING_LOCATOR  # css locator; star-rating Three - 2 css classes
         star_rating_tag = self.soup.select_one(locator)
         classes = star_rating_tag.attrs["class"] #we get list of values ['star-rating', 'Three']
         #we need to find out a class which is not 'star-rating'; list comprehension way
@@ -86,9 +89,26 @@ class ParsedItem:
         print(classes)
         return rating_classes[0] #to return the element, not the full list
 
+#next lesson - we add parsed item locators class, so that ParsedItem doesn't care about locator.
+#Separating how and what.
+
+
+class ParsedItemLocators:
+    """
+    Locators for an item in the HTML page.
+
+    This allows us to easily see what our code will be looking at
+    as well as change it quickly if we notice it is now different.
+    """
+    NAME_LOCATOR = 'article.product_pod h3 a'
+    LINK_LOCATOR = 'article.product_pod a'
+    PRICE_LOCATOR = 'article.product_pod p.price_color'
+    RATING_LOCATOR = 'article.product_pod p.star-rating'
 
 item = ParsedItem(ITEM_HTML)
 #print(item.find_item_rating())
 print(item.link)
 print(item.name)
 print(item.rating)
+
+#to summarize - 1 class to extract the data, 1 class to define where the data is on the page
