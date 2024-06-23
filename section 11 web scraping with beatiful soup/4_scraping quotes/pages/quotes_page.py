@@ -1,1 +1,2 @@
-#how to get data from quotes apge
+#how to get data from quotes page
+#main page = https://quotes.toscrape.com/
