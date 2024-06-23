@@ -1,5 +1,4 @@
-from ..locators.quote_locators import QuoteLocators
-
+from locators.quote_locators import QuoteLocators
 class QuoteParser:
     """
     Given one of the specific quote divs, find out the data about the quote(content,author,tags)
