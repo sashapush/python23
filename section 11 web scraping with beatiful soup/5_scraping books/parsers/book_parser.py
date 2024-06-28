@@ -21,6 +21,9 @@ class BookParser:
     def __init__(self, parent):  # parent is already a beautiful soup object
         self.parent = parent
 
+    def __repr__(self):
+        return f"<Book {self.name}, costing {self.price}>, rating ({self.rating} stars)>"
+
     @property
     def name(self):
         # item name
@@ -42,7 +45,7 @@ class BookParser:
         # my way
         locator = BookLocators.PRICE_LOCATOR  # css locator
         expression = '£([0-9]+\.[0-9]+)'  # () is a group; + is 1 or more (I've used * and it's 0 or more
-        item_price = self.soup.select_one(locator).string  # =£51.77 #lector did .string instead of .getText()
+        item_price = self.parent.select_one(locator).string  # =£51.77 #lector did .string instead of .getText()
         matches = re.search(expression, item_price)
         return float(matches.group(1))  # 51.77 first thing in a brackets
 
@@ -53,8 +56,8 @@ class BookParser:
         classes = star_rating_tag.attrs["class"]  # we get list of values ['star-rating', 'Three']
         # we need to find out a class which is not 'star-rating'; list comprehension way
         rating_classes = [r for r in classes if r != 'star-rating']
-        print(classes)
-        rating_number = BookParser.RATINGS.get(rating_classes[0], default = 99) #we get the text value from rating_classes[0] and class' property returns us the value of said key
+        #print(classes)
+        rating_number = BookParser.RATINGS.get(rating_classes[0])#, default=9) #we get the text value from rating_classes[0] and class' property returns us the value of said key
         #above None is not found; adding argument will be returned - 99 - if the value isn't found
         return rating_number  # to return the element, not the full list
 
@@ -72,10 +75,10 @@ class ParsedItemLocators:
     RATING_LOCATOR = 'article.product_pod p.star-rating'
 
 
-item = ParsedItem(ITEM_HTML)
+#item = ParsedItemLocators(ITEM_HTML)
 # print(item.find_item_rating())
-print(item.link)
-print(item.name)
-print(item.rating)
+#print(item.link)
+#print(item.name)
+#print(item.rating)
 
 # to summarize - 1 class to extract the data, 1 class to define where the data is on the page

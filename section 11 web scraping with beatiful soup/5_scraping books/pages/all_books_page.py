@@ -1,6 +1,6 @@
 #takes in entire html content and parses with beautiful soup
 from bs4 import BeautifulSoup #external imports go above
-from locators.all_books_page import AllBooksPageLocators #internal below. Just a convention
+from locators.books_page_locators import AllBooksPageLocators #internal below. Just a convention
 from parsers.book_parser import BookParser
 class AllBooksPage:
     def __init__(self, page_content):
