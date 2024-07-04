@@ -17,7 +17,7 @@ def print_best_books():
         print(book)
 
 '''List of 5 star books below'''
-def five_star_books():
+def print_five_star_books():
     five_star_books = [book for book in books if book.rating == 5]
     for book in five_star_books:
         print(book)
@@ -46,15 +46,16 @@ books_generator = (x for x in books) #create a books generator. So that we can u
 def get_next_book():
     print(next(books_generator))
 
+user_choices = {
+    'b' : print_five_star_books, #the function, not the result. We don't call the functions since they would be run on dictionary filling
+    'c': print_cheapest_books,
+    'n': get_next_book
+}
 def menu():
     user_input = input(USER_CHOICE)
     while user_input != 'q':
-        if user_input == 'b':
-            five_star_books()
-        elif user_input == 'c':
-            print_cheapest_books()
-        elif user_input == 'n':
-            get_next_book()
+        if user_input in ('b','c','n'):
+            user_choices[user_input]() # will give the function, associated with input inside dictionary, and run it via ()
         else:
             print("Please choose a valid command")
         user_input = input(USER_CHOICE)
