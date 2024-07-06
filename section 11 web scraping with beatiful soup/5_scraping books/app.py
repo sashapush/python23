@@ -10,7 +10,7 @@ books = page.books #property of AllBooksPage class
 #     print(book)
 
 #this way we scrape all the 50 pages
-for page_num in range(1,50): #1-49 (we have 1st page above)
+for page_num in range(1, page.page_count): #1-49 (we have 1st page above)
     url = f"https://books.toscrape.com/catalogue/page-{page_num+1}.html"
     page_content = requests.get(url).content
     page = AllBooksPage(page_content)
