@@ -2,7 +2,18 @@
 from bs4 import BeautifulSoup #external imports go above
 from locators.books_page_locators import AllBooksPageLocators #internal below. Just a convention
 from parsers.book_parser import BookParser
+import logging
 import re
+
+logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+                    datefmt='%d-%m-%Y %H:%M:%S',
+                    level=logging.DEBUG,
+                    filename='logs.txt')
+logger = logging.getLogger('scraping') #main logger, called scraping
+
+logger.info("Loading books list..")
+
+
 class AllBooksPage:
     def __init__(self, page_content):
         self.soup = BeautifulSoup(page_content, 'html.parser')
