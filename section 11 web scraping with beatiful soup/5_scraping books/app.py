@@ -1,6 +1,14 @@
+import logging
 import requests
 from pages.all_books_page import AllBooksPage
 #this way we scrape 1 page
+logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+                    datefmt='%d-%m-%Y %H:%M:%S',
+                    level=logging.INFO, #we can decrease level to INFO after app is stable
+                    filename='logs.txt')
+logger = logging.getLogger('scraping') #main logger, called scraping
+
+logger.info("Loading books list..")
 page_content = requests.get("https://books.toscrape.com/").content #we get the content of only 1 page out of 50
 
 page = AllBooksPage(page_content)
