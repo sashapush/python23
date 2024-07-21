@@ -28,3 +28,21 @@ class QuotesPage:
 
     def select_author(self, author_name: str):
         self.author_dropdown.select_by_visible_text(author_name)
+
+    def get_authors(self):
+        #initial way of thinking - bad.
+        #authors = [authors for authors in self.browser.find_elements(By.CSS_SELECTOR, QuotesPageLocators.AUTHORS_LIST)]
+        #authors_name = [i.text for i in authors]
+        #return authors_name
+        #Lector did it simpler with list comprehension:
+        return [option.text.strip() for option in self.author_dropdown.options]
+    @property
+    def tags_dropdown(self) -> Select:
+        element = self.browser.find_element(By.CSS_SELECTOR, QuotesPageLocators.TAG_DROPDOWN)
+        return Select(element)
+
+    def get_tags(self):
+        return [option.text.strip() for option in self.tags_dropdown.options] #we get the tags
+
+    def select_tag(self, tag_name: str):
+        self.tags_dropdown.select_by_visible_text(tag_name)

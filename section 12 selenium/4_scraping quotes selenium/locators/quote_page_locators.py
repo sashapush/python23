@@ -2,5 +2,6 @@
 class QuotesPageLocators:
     QUOTE = "div.quote" #VARIABLE IN ALL CAPS is constant
     AUTHOR_DROPDOWN = "select#author"
+    AUTHORS_LIST = "select[id='author'] option"
     TAG_DROPDOWN = "select#tag"
     SEARCH_BUTTON = "input[value='Search']"
