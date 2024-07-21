@@ -46,3 +46,7 @@ class QuotesPage:
 
     def select_tag(self, tag_name: str):
         self.tags_dropdown.select_by_visible_text(tag_name)
+
+    @property
+    def search_button(self):
+        return self.browser.find_element(By.CSS_SELECTOR, QuotesPageLocators.SEARCH_BUTTON)

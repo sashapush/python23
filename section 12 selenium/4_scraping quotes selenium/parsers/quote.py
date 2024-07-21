@@ -9,7 +9,6 @@ class QuoteParser:
     def __init__(self, parent):
         self.parent = parent #parent is the parent element, of a quote with content, author, tags inside, as children.
 
-
     def __repr__(self):
         return f"<Quote {self.content}, by {self.author}>"
     @property
