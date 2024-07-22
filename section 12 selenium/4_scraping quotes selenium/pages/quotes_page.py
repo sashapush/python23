@@ -3,6 +3,7 @@ from typing import List
 
 from locators.quote_page_locators import QuotesPageLocators
 from parsers.quote import QuoteParser
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -50,3 +51,15 @@ class QuotesPage:
     @property
     def search_button(self):
         return self.browser.find_element(By.CSS_SELECTOR, QuotesPageLocators.SEARCH_BUTTON)
+
+    def search_for_quotes(self, author_name:str, tag_name:str)-> List[QuoteParser]:
+        self.select_author(author_name)
+        try:
+            self.select_tag(tag_name)
+        except NoSuchElementException:
+            raise InvalidTagForAuthorError(f"Author '{author_name} has not tag '{tag_name}'")
+        self.search_button.click()
+        return self.quotes
+
+class InvalidTagForAuthorError(ValueError):
+    pass
