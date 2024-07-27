@@ -5,3 +5,4 @@ class QuotesPageLocators:
     AUTHORS_LIST = "select[id='author'] option"
     TAG_DROPDOWN = "select#tag"
     SEARCH_BUTTON = "input[value='Search']"
+    TAG_DROPDOWN_VALUE_OPTION = "select#tag option[value]"

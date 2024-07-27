@@ -1,6 +1,8 @@
 #how to get data from quotes page
+import time
 from typing import List
-
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 from locators.quote_page_locators import QuotesPageLocators
 from parsers.quote import QuoteParser
 from selenium.common import NoSuchElementException
@@ -54,6 +56,9 @@ class QuotesPage:
 
     def search_for_quotes(self, author_name:str, tag_name:str)-> List[QuoteParser]:
         self.select_author(author_name)
+        #time.sleep(5) #5 seconds pause, but usually not appropriate to use it. Better to wait for something specific
+        #impicit wait
+        WebDriverWait(self.browser,10).until(expected_conditions.presence_of_element_located(By.CSS_SELECTOR,QuotesPageLocators.TAG_DROPDOWN_VALUE_OPTION))
         try:
             self.select_tag(tag_name)
         except NoSuchElementException:
