@@ -1,5 +1,5 @@
 #goal is to display logic of queuing of threads with shared state
-#when threads work with shared stated - queues are needed
+#when threads work with shared stated - queues are needed - implemented below
 import  time
 import random
 import queue
