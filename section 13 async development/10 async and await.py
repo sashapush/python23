@@ -4,7 +4,7 @@ from types import coroutine
 friends = deque(("Rolf","Jose","Charlie","Jen","Anna"))
 
 @coroutine
-def friend_upper(): #this is a generator but since it accepts date - it's called co-routine !!! ?MEGA IMPTRASOPDASD
+def friend_upper(): #this is a generator but since it accepts data - it's called co-routine !!! ?MEGA IMPTRASOPDASD
     while friends:
             friend = friends.popleft().upper() #upper registry of the leftest
             greeting = yield
