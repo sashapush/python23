@@ -17,7 +17,7 @@ async def fetch_page(url):
 #loop.run_until_complete(fetch_page("https://google.com")) #we don't get response status - but a coroutine object.
 async def main():
     tasks = [fetch_page("http://google.com") for i in range(50)]#to run multiple requests:
-    await asyncio.gather(*tasks)  #*tasks is argument unpacking, = tasks[0],tasks[1] etc
+    await asyncio.gather(*tasks)  #*tasks is argument unpacking, = tasks[0],tasks[1] etc. gather() collects every task and runs it
 
 
 start_time = time.time()
