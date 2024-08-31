@@ -2,14 +2,16 @@ import aiohttp
 import asyncio
 import time
 
+
 #first we create a coroutine - like a generator which suspends and resumes anytime by using wait
 async def fetch_page(url):
     page_start = time.time()
-    #create a client session from aiohttp
-    async with aiohttp.ClientSession() as session: #create a session; can be suspended here
-        async with session.get(url) as response: #get url; can be suspended here
-            print(f"Page took {time.time() - page_start}")
-            return response.status #return response status
+    async with asyncio.timeout(10):
+        #create a client session from aiohttp
+        async with aiohttp.ClientSession() as session: #create a session; can be suspended here
+            async with session.get(url) as response: #get url; can be suspended here
+                print(f"Page took {time.time() - page_start}")
+                return response.status #return response status
 
 #we also need a task scheduler
 
