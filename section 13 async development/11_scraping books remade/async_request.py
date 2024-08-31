@@ -6,7 +6,7 @@ import time
 #first we create a coroutine - like a generator which suspends and resumes anytime by using wait
 async def fetch_page(url):
     page_start = time.time()
-    async with asyncio.timeout(10):
+    async with asyncio.timeout(5): #timeout error is raised if (value) passes without function being done
         #create a client session from aiohttp
         async with aiohttp.ClientSession() as session: #create a session; can be suspended here
             async with session.get(url) as response: #get url; can be suspended here
