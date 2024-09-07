@@ -27,12 +27,14 @@ async def get_multiple_pages(*urls):
         grouped_tasks = asyncio.gather(*tasks)
         return await grouped_tasks
 
-
-
 async def main():
     urls = [f'http://books.toscrape.com/catalogue/page-{p+1}.html' for p in range(1, page.page_count)]
     pages = [get_multiple_pages(url) for url in urls]
     await asyncio.gather(*pages)  #*tasks is argument unpacking, = tasks[0],tasks[1] etc. gather() collects every task and runs it
+    for page_content in pages:
+         logger.debug('Creating AllBooksPage from page content.')
+         books.extend(page.books)
+    print(books)
 
 start = time.time()
 asyncio.run(main())
