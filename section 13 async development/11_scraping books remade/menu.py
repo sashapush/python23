@@ -1,5 +1,5 @@
 import logging
-from app import books
+from app2_remade import books
 
 logger = logging.getLogger('scraping.menu')
 
