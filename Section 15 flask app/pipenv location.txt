@@ -1,0 +1,20 @@
+Virtualenv location: C:\Users\Alex\.virtualenvs\Section_15_flask_app-UrsrPdVn
+
+
+To get the location of the virtual environment you could do the following:
+
+
+
+1- Navigate to the directory where you created the virtual environment:
+
+
+
+2- Type:
+
+pipenv shell
+pipenv --venv
+
+
+Then you should see something like:
+
+C:\Users\leo24\.virtualenvs\pipenv_test-euQW4e_R
