@@ -1,9 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__) #__name__ is always unique
 
 posts = {
     0:{
+        'post_id': 0,
         'title': 'a title',
         'content': 'This is again the first one'
     }
@@ -21,7 +22,19 @@ def post(post_id): #better not to name function as variable and vice versa
     return render_template('post.jinja2', post=posts.get(post_id)) #we pass post argument from post.jinja2
     #f"Post is: {post['title']}, content:\n\n{post['content']}"
 
+@app.route('/post/form')
+def form():
+    return render_template('create.jinja2')
 
+#http://127.0.0.1:5000/post/form?title=zzzzz&content=+aaaa
+@app.route('/post/create')
+def create():
+    title = request.args.get('title')
+    content = request.args.get('content')
+    post_id = len(posts)
+    posts[post_id] = {"id":post_id, "title":title, "content":content}
+    return redirect(url_for('post', post_id=post_id)) #url_for - take in function name and return url we want. def post() needs post_id and we give it in url_for
+    #redirect is wrapping this "url_for" and tells the browser to load not /create/  but redirect to url_for
 
 if __name__ == "__main__":
     app.run(debug=True)
