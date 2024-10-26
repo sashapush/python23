@@ -27,14 +27,16 @@ def form():
     return render_template('create.jinja2')
 
 
-@app.route('/post/create', methods=['POST']) #we configure so this route will only receive POST requets
+@app.route('/post/create', methods=['GET','POST']) #we configure so this route will only receive POST requets
 def create():
-    title = request.form.get('title') #more secure way of reading form's payload
-    content = request.form.get('content') #more secure way of reading form data
-    post_id = len(posts)
-    posts[post_id] = {"id":post_id, "title":title, "content":content}
-    return redirect(url_for('post', post_id=post_id)) #url_for - take in function name and return url we want. def post() needs post_id and we give it in url_for
-    #redirect is wrapping this "url_for" and tells the browser to load not /create/  but redirect to url_for
+    if request.method== "POST":
+        title = request.form.get('title') #more secure way of reading form's payload
+        content = request.form.get('content') #more secure way of reading form data
+        post_id = len(posts)
+        posts[post_id] = {"id":post_id, "title":title, "content":content}
+        return redirect(url_for('post', post_id=post_id)) #url_for - take in function name and return url we want. def post() needs post_id and we give it in url_for
+        #redirect is wrapping this "url_for" and tells the browser to load not /create/  but redirect to url_for
+    return render_template('create.jinja2')
 
 if __name__ == "__main__":
     app.run(debug=True)
