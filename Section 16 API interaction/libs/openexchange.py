@@ -1,4 +1,4 @@
-import requests
+import requests, functools
 
 
 class OpenExchangeClient:
@@ -8,6 +8,9 @@ class OpenExchangeClient:
         self.app_id = app_id
 
     @property  # better idea to mark it as property. It doesn't modify anything, doesn't take any arguments or modify
+    @functools.lru_cache(maxsize=2) #least recently used (lru), maxsize = how many pieces of data are stored. I.e caching the function.
+    #since we don't have arguments - maxsize=2 is good. If we do have arguments - we should increase maxsize to account for permutations (i.e. combinations of arguments)
+    #BUT there's a need to invalidate the cache, to prevent outdating the data - TO DO TTL
     def latest(self):
         return requests.get(f"{self.BASE_URL}/latest.json?app_id={self.app_id}").json()
 
