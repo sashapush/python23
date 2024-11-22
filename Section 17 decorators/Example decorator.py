@@ -1,5 +1,5 @@
 import functools
-# decorator is higher order function (which takes in functions as argument) and they also RETURN a function
+# decorator is higher order function (which takes in functions as argument) and they also always RETURN a function
 user = {'username': 'jose123', 'access_level': 'admin'}
 # user = {    'username':'jose123', 'access_level': 'guest'}
 def third_level(access_level):
@@ -12,10 +12,13 @@ def third_level(access_level):
     return user_has_permission
 
 
-@third_level('admin') #it's a function call
+@third_level('admin') #it's a function call, but decorator
+#essentially it's
+#user_has_permission = third_level('admin')
+#my_function=user_has_permission(my_function)
 def my_function(panel):
     """Allows us to retrieve password for the admin panel"""
-    return f'Password {panel} for panel is 1234.'
+    return f'Password for {panel} panel is 1234.'
 
 def another_function():
     return "Hello there"
@@ -25,7 +28,7 @@ def another_function():
 #print(another_fuction.__name__)
 
 print(my_function.__name__)
-#print(my_function('movies'))
+print(my_function('movies'))
 print(my_function('user'))
 #another_fuction() #TODO there's a challenge to use decorator with different functions having different number of arguments
 
