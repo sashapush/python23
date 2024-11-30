@@ -16,7 +16,6 @@
 # # Happy coding!
 # # — Jose and the Teclado team
 
-
 # ---- Do not change the code below ----
 # User identity dictionary
 user = {
@@ -24,14 +23,11 @@ user = {
     'name': 'jose',
     'role': 'admin'
 }
-
 # delete_database() function, DO NOT CHANGE
 def delete_database():
     # perform deletion
     print('Database deleted!')
-
 # ---- Do not change the code above ----
-
 
 # You code starts here:
 # Define a check_permission() decorator:
