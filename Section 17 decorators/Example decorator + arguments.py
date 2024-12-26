@@ -1,12 +1,12 @@
 #copied from Example decorator.py
 
-import functools
+from functools import wraps
 # decorator is higher order function (which takes in functions as argument) and they also always RETURN a function
 user = {'username': 'jose123', 'access_level': 'admin'}
 #commented to comply with learning code
 #def third_level(access_level):
 def user_has_permission(func):
-    @functools.wraps(func) #tells Python that secure_func() is wrapping around original "func" - to keep original function name and docstring
+    @wraps(func) #tells Python that secure_func() is wrapping around original "func" - to keep original function name and docstring. SAME AS @wraps
     def secure_func(*args, **kwargs): #*args(tuple) takes in any number of positional arguments and **kwargs(dictionary) takes in any number of named arguments
         if user.get("access_level") == "admin":  # obv this code is returned when user level is admin
             return func(*args, **kwargs)  #same, param should be returned
