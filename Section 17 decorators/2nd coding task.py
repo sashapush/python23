@@ -27,7 +27,7 @@ def get_current_user_role() -> int:
     # return the current user's role, represented by an int
     # for example, 0 - admin, 1 - user, 2 - guest
     # You don't need to change this function, we will replace it with a real function that returns the user's role
-    return 0
+    return 2
 
 def access_control(access_level: int):
     def outer_wrapper(func):
@@ -45,4 +45,4 @@ def delete_file(string):
     # perform the deletion operation
     print(f'{string} is deleted!')
 
-delete_file("ass")
+delete_file("this")
