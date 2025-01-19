@@ -11,10 +11,10 @@ In this example, we have two decorators. One checks the user's access_level, the
 import functools
 
 # Try the various combinations below!
-#user = {'username': 'jose123', 'access_level': 'admin'}
+user = {'username': 'Jose123', 'access_level': 'admin'}
 # user = {'username': 'bob', 'access_level': 'admin'}
 # user = {'username': 'jose123', 'access_level': 'user'}
-user = {'username': 'bob', 'access_level': 'user'}
+#user = {'username': 'bob', 'access_level': 'user'}
 
 
 def user_name_starts_with_j(func):
