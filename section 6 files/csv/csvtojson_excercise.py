@@ -23,7 +23,7 @@ for line in file_contents:
 print(dict)
 # write to file
 file_to_write = open('json_file.txt', "w")
-json.dump(dict,file_to_write) #first is what we're dumping and 2nd argument is where
+json.dump(dict,file_to_write) #first is what we're dumping and 2nd - ABCs argument is where
 file_to_write.close()
 
 

@@ -32,7 +32,7 @@ def find_other_paragraph():
     paragraphs = soup.find_all('p') #find all paragraphs
     other_paragraph = [p for p in paragraphs if 'subtitle' not in p.attrs.get('class',[])] #return empty list if we couldn't find the 'class' in this dictionary;since we are doing iteration - we can't iterate over nothing, but we can iterate over empty list. Alternative opinion here https://www.udemy.com/course/the-complete-python-course/learn/lecture/9477874#questions/12385902
     """let suppose python goes with  1st one it gets the class which is ["subtitle"] so it won't do anything
-then it goes with 2nd p tag which has no "class" attribute so p.attrs.get('class') gives value None
+then it goes with 2nd - ABCs p tag which has no "class" attribute so p.attrs.get('class') gives value None
 [ p for p in paragraphs if 'subtitle' not in None]
 python can't search for string in None. None means nothing it's different from empty list
 But if you do

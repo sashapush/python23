@@ -1,6 +1,4 @@
 from abc import ABCMeta, abstractmethod
-
-
 # abc means abstract base class
 class Animal(metaclass=ABCMeta):
     def walk(self):
