@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 # abc means abstract base class
-class Animal(metaclass=ABCMeta):
+class Animal(metaclass=ABCMeta):#superclass with abstract methods. In another programming langs it's called an interface because it defines functionality which should be in subclass
+    #you can't instantiate interface.
     def walk(self):
         print("Walking...")
 
