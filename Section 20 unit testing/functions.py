@@ -1,6 +1,8 @@
 from typing import Union
 
 def divide(dividend: Union[int,float], divisor: Union[int,float]):
+    if divisor==0:
+        raise ValueError("Don't you dare divide by 0")
     return dividend / divisor
 
 # try:
