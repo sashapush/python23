@@ -1,4 +1,4 @@
-from functions import divide
+from functions import divide, multiply
 from unittest import TestCase
 
 
@@ -22,7 +22,41 @@ class TestFunctions(TestCase):
         self.assertEqual(divide(dividend, divisor), expected_result)
 
     def test_divide_error_on_zero(self):
-        #self.assertRaises(ValueError, lambda: divide(25,0)) #lambda since argument should be callable, not result of the function. Unless function doesn't take arguments.
-        #or the same test can be achieved via context manager
-        with self.assertRaises(ValueError): #Test will pass if error is triggered. If not - test will fail.
-            divide(24,0)
+        # self.assertRaises(ValueError, lambda: divide(25,0)) #lambda since argument should be callable, not result of the function. Unless function doesn't take arguments.
+        # or the same test can be achieved via context manager
+        with self.assertRaises(ValueError):  # Test will pass if error is triggered. If not - test will fail.
+            divide(24, 0)
+
+    def test_multiply_empty(self):
+        with self.assertRaises(ValueError):
+            multiply()
+
+    def test_multiply_single_value(self):
+        expected = 16
+        self.assertEqual(multiply(expected), expected)
+
+    def test_multiply_single_zero(self):
+        expected = 0
+        self.assertEqual(multiply(expected), expected)
+
+    def test_multiply_result(self):
+        inputs = (3, 5)
+        expected = 15
+        self.assertEqual(multiply(*inputs), expected)  # *inputs passes arrayish data as individual args
+
+    def test_multiply_result_with_zero(self):
+        inputs = (3, 5, 0)
+        expected = 0
+        self.assertEqual(multiply(*inputs), expected)
+
+    def test_multiply_negative(self):
+        inputs = (3, -5, 2)
+        expected = -30
+        self.assertEqual(multiply(*inputs), expected)
+
+    def test_multiply_floats(self):
+        inputs = (3.0, 2)
+        expected = 6.0
+        self.assertEqual(multiply(*inputs), expected)
+
+#lots of duplication, but with official documentation it can be improved, f.e hypothesis
