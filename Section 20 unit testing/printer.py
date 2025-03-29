@@ -13,4 +13,4 @@ class Printer:
 
         self._capacity -= pages
 
-        return f"Printed {pages} pages in {pages / self.pages_per_s:.2f} seconds"
+        return f"Printed {pages} pages in {pages / self.pages_per_s:.2f} seconds."
