@@ -8,7 +8,7 @@ class TestPageRequester(TestCase):
 
     def test_make_request(self):
         with patch("requests.get") as mocked_get:
-            response = self.page.get()
+            response = self.page.get() #magic mock here
             print(response.rolf)
             mocked_get.assert_called()
 
