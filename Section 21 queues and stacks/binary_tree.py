@@ -21,3 +21,22 @@ class BinaryTree:
                 else:
                     current_node.right = new_node
                     break
+
+    def inordertraversion(self):
+        self._inorder_recursive(self.head) #calls another private method (seen by _)
+        #so self.head becomes current_node
+    def _inorder_recursive(self, current_node: Node):
+        if not current_node:
+            return
+        self._inorder_recursive(current_node.left)
+        print(current_node)
+        self._inorder_recursive(current_node.right)
+        #that's a recursion - when a function or method calls itself
+
+        def _preorder_recursive(self, current_node: Node):
+            if not current_node:
+                return
+            #print(current_node) leaving print here would make this preorder traversal, if print is deleted from L41
+            self._inorder_recursive(current_node.left)
+            print(current_node)
+            self._inorder_recursive(current_node.right)
