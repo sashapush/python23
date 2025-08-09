@@ -22,3 +22,6 @@ tree.add(Node(11))
 # print(tree.head.right)
 
 tree.inordertraversion()
+
+print(tree.find(11))
+print(tree.find(12))
