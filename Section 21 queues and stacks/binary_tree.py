@@ -73,7 +73,7 @@ class BinaryTree:
 
     def find_rightmost(self, node: Node) -> Node:
         current_node = node
-        while current_node:
+        while current_node.right:
             current_node = current_node.right
         return current_node
     def delete_node(self, value: int): #https://www.udemy.com/course/the-complete-python-course/learn/lecture/9790270
@@ -82,9 +82,20 @@ class BinaryTree:
         # the right branch
         to_delete = self.find(value)
         to_delete_parent = self.find_parent(value)
+        # 2 children are present https://www.udemy.com/course/the-complete-python-course/learn/lecture/9790278#questions
         if to_delete.left and to_delete.right:
-            #2 children are present
-            pass
+            rightmost = self.find_rightmost(to_delete.left)
+            rightmost_parent = self.find_parent(rightmost.value)
+            if rightmost_parent != to_delete:
+                rightmost_parent.right = rightmost.left
+                rightmost.left = to_delete.left
+            rightmost.right = to_delete.right
+            if to_delete == to_delete_parent.left:
+                to_delete_parent.left = rightmost
+            elif to_delete == to_delete_parent.right:
+                to_delete_parent.right = rightmost
+            else: #deleting the head
+                self.head = rightmost
         elif to_delete.left or to_delete.right:
             #1 child
             if to_delete == to_delete_parent.left:

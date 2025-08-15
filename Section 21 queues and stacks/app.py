@@ -24,4 +24,13 @@ tree.add(Node(11))
 tree.inordertraversion()
 
 print(tree.find(11))
-print(tree.find(12))
+#print(tree.find(12)) raises LookupError since there is no element
+######################################
+print("New tree block below")
+new_tree = BinaryTree(Node(6))
+nodes = [5,3,9,7,8,7.5,12,11]
+for n in nodes:
+    new_tree.add(Node(n))
+
+new_tree.delete_node(9)
+new_tree.inordertraversion()
